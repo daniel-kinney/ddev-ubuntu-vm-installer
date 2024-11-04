@@ -12,7 +12,8 @@ sudo snap install code --classic
 
 echo "---- Installing Google Chrome ----"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt-get install -f -y
 
 echo "---- Installing GIT ----"
 sudo apt install git -y
@@ -29,5 +30,5 @@ sudo systemctl enable containerd.service
 
 echo "--- Installing DDEV https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/#ddev-installation-linux ----"
 curl -fsSL https://ddev.com/install.sh | bash
-sudo apt install libnss3-tools -y
+sudo apt install mkcert -y
 mkcert -install
