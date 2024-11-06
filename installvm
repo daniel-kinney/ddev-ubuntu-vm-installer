@@ -30,5 +30,5 @@ sudo systemctl enable containerd.service
 
 echo "--- Installing DDEV https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/#ddev-installation-linux ----"
 curl -fsSL https://ddev.com/install.sh | bash
-sudo apt install mkcert -y
+sudo apt install libnss3-tools -y
 mkcert -install
