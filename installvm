@@ -4,6 +4,9 @@ echo "---- Updatating Ubuntu... ----"
 sudo apt update
 sudo apt upgrade -y
 
+echo "--- Installing network and wsl utilities ---"
+sudo apt install wslu libnss3-tools -y
+
 echo "---- Installing PHPStorm... ----"
 sudo snap install phpstorm --classic
 
@@ -11,15 +14,14 @@ echo "---- Installing VSCode... ----"
 sudo snap install code --classic
 
 echo "---- Installing Google Chrome ----"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-sudo apt-get install -f -y
+sudo apt install curl software-properties-common apt-transport-https ca-certificates -y
+curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg > /dev/null
+echo deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install google-chrome-stable
 
 echo "---- Installing Firefox ---- "
 sudo snap install firefox
-
-echo "---- Installing GIT ----"
-sudo apt install git -y
 
 echo "--- Installing Docker... https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository ----"
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -31,7 +33,12 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 
-echo "--- Installing DDEV https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/#ddev-installation-linux ----"
+echo "---- Installing DDEV https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/#ddev-installation-linux ----"
 curl -fsSL https://ddev.com/install.sh | bash
-sudo apt install libnss3-tools -y
+
+echo "---- Setting up mkcert ----"
+mkcert.exe -install
+export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert
+echo "export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert" >> ~/.profile
+source ~/.profile
 mkcert -install
