@@ -41,6 +41,6 @@ curl -fsSL https://ddev.com/install.sh | bash
 echo "---- Setting up mkcert ----"
 mkcert.exe -install
 export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert
-echo "export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert" >> ~/.profile
+echo "export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert" | tee -a ~/.profile
 source ~/.profile
 mkcert -install
