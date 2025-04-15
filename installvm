@@ -37,10 +37,3 @@ sudo systemctl enable containerd.service
 
 echo "---- Installing DDEV https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/#ddev-installation-linux ----"
 curl -fsSL https://ddev.com/install.sh | bash
-
-echo "---- Setting up mkcert ----"
-mkcert.exe -install
-export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert
-echo "export CAROOT=/mnt/c/Users/$(wslvar USERNAME)/AppData/Local/mkcert" | tee -a ~/.bashrc
-source ~/.bashrc
-mkcert -install
