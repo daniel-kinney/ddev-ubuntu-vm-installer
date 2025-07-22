@@ -6,8 +6,8 @@ echo "---- Updatating Ubuntu... ----"
 sudo apt update
 sudo apt upgrade -y
 
-echo "--- Installing network and wsl utilities ---"
-sudo apt install wslu libnss3-tools -y
+echo "--- Installing networkm, wsl, and keyring utilities ---"
+sudo apt install wslu libnss3-tools gnome-keyring libsecret-1-0 -y
 
 echo "---- Installing PHPStorm... ----"
 sudo snap install phpstorm --classic
